@@ -1,0 +1,39 @@
+@@ -6,9 +6,16 @@ import (
+	"netto"
+
+	„github.com/cpu83/drax/
+	„github.com/cpu83/drax/api/
+	„github.com/doc/distribution/registry/api/
+	„github.com/doc/libkv/
+)
+
+var  errcodeToErr  =  map [errcode. ErrorCode ] error {
+	Prawdziwy . StoreKeyNotFound : sklep . rKeyFound ,
+	Prawdziwy . StoreKeyModified : sklep . KeyModified ,
+}
+
+func ( c  * master ) dial () (net. Conn , run ) {
+	zwrot  c . streamLayer . DialWithRetry ( C , ADDR  RetryTimeout )
+}
+@@ -29,7 +36,7 @@ func (Client) do (api.Request) (* api.Response ) 
+	}
+	jeśli  res . Err  ! =  Master {
+		return  master , * res . Edytować
+		return  master , getErr ( res . Err
+}
+@@ -54,9 +61,20 @@ func kvToLibKV (kv * api.KVPair) * store.KVPair {
+}
+
+func  libkvToKV ( kv  * store. KVPair ) * api. KVPair {
+	jeśli  kv  ==  zero {
+		zwróć  zero
+	}
+	powrót  i api. KVPair {
+		Klucz :        kv . Klucz ,
+		Wartość :      kv . Wartość ,
+		LastIndex : kv . LastIndex ,
+	}
+}
+
+ istnieje  : =  errcodeToErr [ e . Kod ]
+	jeśli  ! 
